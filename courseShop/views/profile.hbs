@@ -1,0 +1,33 @@
+<h1>Profile</h1>
+
+<div class="row">
+  <div class="col s6">
+    {{#if user.avatar}}
+    <img class="avatar" src="/{{user.avatar}}" alt="{{user.name}}">
+    {{else}}
+    <p>Avatar doesnt exist</p>
+    {{/if}}
+  </div>
+  <div class="col s6">
+    <p>Your Email: <strong>{{user.email}}</strong></p>
+
+    <form action="/profile" method="POST" enctype="multipart/form-data">
+      <div class="input-field">
+        <input name="name" id="name" type="text" class="validate" value="{{user.name}}" required>
+        <label for="name">Name</label>
+        <span class="helper-text" data-error="Enter name"></span>
+      </div>
+      <div class="file-field input-field">
+        <div class="btn">
+          <span>Avatar</span>
+          <input type="file" name="avatar">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" placeholder="Upload avatar">
+        </div>
+      </div>
+      <input type="hidden" name="_csrf" value="{{csrf}}">
+      <button type="submit" class="btn">Edit</button>
+    </form>
+  </div>
+</div>
